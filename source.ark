@@ -1,0 +1,136 @@
+-- Scripts
+
+local infammoscript = "https://pastebin.com/raw/0rpytxFG"
+local spreadscript = "https://pastebin.com/raw/TWKdCmm0"
+local recoilscript = "https://pastebin.com/raw/XwpE2kcd"
+
+-- Theme
+
+local theme = {
+    SchemeColor = Color3.fromRGB(0,255,255),
+    Background = Color3.fromRGB(25, 25, 25),
+    Header = Color3.fromRGB(30, 30, 30),
+    TextColor = Color3.fromRGB(255,255,255),
+    ElementColor = Color3.fromRGB(20, 20, 20)
+}
+
+-- Library
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Project Lazarus x Arkinetic", theme)
+
+-- Main
+
+local main_tab = Window:NewTab("Main")
+local weapons_tab = Window:NewTab("Weapons")
+local player_tab = Window:NewTab("Player")
+local misc_tab = Window:NewTab("Misc")
+local skid_tab = Window:NewTab("Skids")
+
+-- Sections
+
+local main_section = main_tab:NewSection("Main")
+local weapons_section = weapons_tab:NewSection("Gun mods")
+local player_section = player_tab:NewSection("Player")
+local misc_section = misc_tab:NewSection("Misc")
+local skid_section = skid_tab:NewSection("Skids")
+
+-- Buttons
+
+local infbuttonbtn = weapons_section:NewButton("Infinite Ammo","infinit amo", function()
+   loadstring(game:HttpGet(infammoscript))()
+end)
+
+local nospreadbtn = weapons_section:NewButton("No Spread","no spred", function()
+   loadstring(game:HttpGet(spreadscript))()
+end)
+
+local norecoilbtn = weapons_section:NewButton("No Recoil","ban gunkick", function()
+   loadstring(game:HttpGet(recoilscript))()
+end) 
+
+local pointanddamage10x = skid_section:NewButton("10x Damage and Point Multiplier","ez", function()
+   loadstring(game:HttpGet('https://raw.githubusercontent.com/goodluck3646/projectlazar-multipliers/main/10x.md'))()
+end)
+
+local FastGunbtn = weapons_section:NewButton("Fast Gun","supr ultra sped gun go zoooom", function()
+   local Tables = {}
+
+	for i,v in next, getreg() do
+		if typeof(v) == "table" then
+			if v.Damage then
+				table.insert(Tables, v)
+			end
+		end
+	end
+
+	local function Upload()
+		for i,v in next, Tables do
+			v.FireTime = 0.0001
+			v.Semi = false
+		end
+	end
+
+	while wait(5) do
+		Tables = {}
+
+		for i,v in next, getreg() do
+			if typeof(v) == "table" then
+				if v.Damage then
+					table.insert(Tables, v)
+				end
+			end
+		end
+
+		Upload()
+	end
+end) 
+
+local oneshotbtn = weapons_section:NewButton("One Shot Gun","supr ultra gun go killkill", function()
+   local Tables = {}
+
+	for i,v in next, getreg() do
+		if typeof(v) == "table" then
+			if v.Damage then
+				table.insert(Tables, v)
+			end
+		end
+	end
+
+	local function Upload()
+		for i,v in next, Tables do
+			v.Damage = {Max = 1000, Min = 1000}
+			v.FireTime = 0.0001
+			v.Semi = false
+		end
+	end
+
+	while wait(5) do
+		Tables = {}
+
+		for i,v in next, getreg() do
+			if typeof(v) == "table" then
+				if v.Damage then
+					table.insert(Tables, v)
+				end
+			end
+		end
+
+		Upload()
+	end
+end)
+
+-- Sliders
+
+player_section:NewSlider("WalkSpeed", "go roblok charkter zoooom", 500, 0, function(s) -- 500 max/
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
+
+-- Keybinds
+
+local togglekeybind = misc_section:NewKeybind("Toggle UI", "togl da ui", Enum.KeyCode.LeftControl, function()
+Library:ToggleUI()	
+end)
+
+-- Script Finished
+
