@@ -7,7 +7,7 @@ local recoilscript = "https://pastebin.com/raw/XwpE2kcd"
 -- Library
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("Project Lazarus x Arkinetic", "Sentinel")
+local Window = Library.CreateLib("Project Lazarus x Arkinetic", "BloodTheme")
 
 -- Main
 
@@ -27,15 +27,15 @@ local skid_section = skid_tab:NewSection("Skids")
 
 -- Buttons
 
-local infbuttonbtn = weapons_section:NewButton("Infinite Ammo","infinit amo", function()
+local infbuttonbtn = weapons_section:NewButton("Infinite Ammo","Gives you infinite ammo forever", function()
    loadstring(game:HttpGet(infammoscript))()
 end)
 
-local nospreadbtn = weapons_section:NewButton("No Spread","no spred", function()
+local nospreadbtn = weapons_section:NewButton("No Spread","No Spread for the guns you currently have(slot123)", function()
    loadstring(game:HttpGet(spreadscript))()
 end)
 
-local norecoilbtn = weapons_section:NewButton("No Recoil","ban gunkick", function()
+local norecoilbtn = weapons_section:NewButton("No Recoil","Ah, so annoying.. It's a must have (slot123)", function()
    loadstring(game:HttpGet(recoilscript))()
 end) 
 
@@ -43,7 +43,7 @@ local pointanddamage10x = skid_section:NewButton("10x Damage and Point Multiplie
    loadstring(game:HttpGet('https://raw.githubusercontent.com/goodluck3646/projectlazar-multipliers/main/10x.md'))()
 end)
 
-local FastGunbtn = weapons_section:NewButton("Fast Gun","supr ultra sped gun go zoooom", function()
+local FastGunbtn = weapons_section:NewButton("Fast Gun","Burst the servers ear drums", function()
    local Tables = {}
 
 	for i,v in next, getreg() do
@@ -76,7 +76,7 @@ local FastGunbtn = weapons_section:NewButton("Fast Gun","supr ultra sped gun go 
 	end
 end) 
 
-local oneshotbtn = weapons_section:NewButton("One Shot Gun","supr ultra gun go killkill", function()
+local oneshotbtn = weapons_section:NewButton("One Shot Gun","Saitama Gun", function()
    local Tables = {}
 
 	for i,v in next, getreg() do
@@ -89,9 +89,7 @@ local oneshotbtn = weapons_section:NewButton("One Shot Gun","supr ultra gun go k
 
 	local function Upload()
 		for i,v in next, Tables do
-			v.Damage = {Max = 1000, Min = 1000}
-			v.FireTime = 0.0001
-			v.Semi = false
+			v.Damage = {Max = 5000, Min = 5000}
 		end
 	end
 
@@ -101,6 +99,70 @@ local oneshotbtn = weapons_section:NewButton("One Shot Gun","supr ultra gun go k
 		for i,v in next, getreg() do
 			if typeof(v) == "table" then
 				if v.Damage then
+					table.insert(Tables, v)
+				end
+			end
+		end
+
+		Upload()
+	end
+end)
+
+local fullyautomaticbtn = weapons_section:NewButton("Fully Automatic","Fully Automatic Gun", function()
+ local Tables = {}
+
+	for i,v in next, getreg() do
+		if typeof(v) == "table" then
+			if v.Semi then
+				table.insert(Tables, v)
+			end
+		end
+	end
+
+	local function Upload()
+		for i,v in next, Tables do
+			v.Semi = false
+		end
+	end
+
+	while wait(5) do
+		Tables = {}
+
+		for i,v in next, getreg() do
+			if typeof(v) == "table" then
+				if v.Semi then
+					table.insert(Tables, v)
+				end
+			end
+		end
+
+		Upload()
+	end
+end)
+
+local semiautomaticbtn = weapons_section:NewButton("Semi Automatic","Semi Automatic Gun", function()
+ local Tables = {}
+
+	for i,v in next, getreg() do
+		if typeof(v) == "table" then
+			if v.Semi then
+				table.insert(Tables, v)
+			end
+		end
+	end
+
+	local function Upload()
+		for i,v in next, Tables do
+			v.Semi = true
+		end
+	end
+
+	while wait(5) do
+		Tables = {}
+
+		for i,v in next, getreg() do
+			if typeof(v) == "table" then
+				if v.Semi then
 					table.insert(Tables, v)
 				end
 			end
@@ -112,13 +174,13 @@ end)
 
 -- Sliders
 
-player_section:NewSlider("WalkSpeed", "go roblok charkter zoooom", 500, 0, function(s) -- 500 max/
+player_section:NewSlider("WalkSpeed", "broken", 500, 0, function(s) -- 500 max/
     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
 end)
 
 -- Keybinds
 
-local togglekeybind = misc_section:NewKeybind("Toggle UI", "togl da ui", Enum.KeyCode.LeftControl, function()
+local togglekeybind = misc_section:NewKeybind("Toggle UI", "Key to show and hide the UI", Enum.KeyCode.LeftControl, function()
 Library:ToggleUI()	
 end)
 
