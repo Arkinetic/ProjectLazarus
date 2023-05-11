@@ -4,20 +4,10 @@ local infammoscript = "https://pastebin.com/raw/0rpytxFG"
 local spreadscript = "https://pastebin.com/raw/TWKdCmm0"
 local recoilscript = "https://pastebin.com/raw/XwpE2kcd"
 
--- Theme
-
-local theme = {
-    SchemeColor = Color3.fromRGB(0,255,255),
-    Background = Color3.fromRGB(25, 25, 25),
-    Header = Color3.fromRGB(30, 30, 30),
-    TextColor = Color3.fromRGB(255,255,255),
-    ElementColor = Color3.fromRGB(20, 20, 20)
-}
-
 -- Library
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("Project Lazarus x Arkinetic", theme)
+local Window = Library.CreateLib("Project Lazarus x Arkinetic", Sentinel)
 
 -- Main
 
