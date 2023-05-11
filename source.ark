@@ -7,7 +7,7 @@ local recoilscript = "https://pastebin.com/raw/XwpE2kcd"
 -- Library
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("Project Lazarus x Arkinetic", Sentinel)
+local Window = Library.CreateLib("Project Lazarus x Arkinetic", "Sentinel")
 
 -- Main
 
